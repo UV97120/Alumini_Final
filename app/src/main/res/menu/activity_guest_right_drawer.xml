@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <group android:checkableBehavior="single">
+            <item android:title="Account">
+                <menu>
+                    <item
+                        android:id="@+id/nav_why_join_ckp_alumni"
+                        android:title="Why join CKP ALUMNI" />
+                    <item
+                        android:id="@+id/nav_upcoming_events"
+                        android:title="Upcoming Events"/>
+                    <item
+                        android:id="@+id/nav_subscribe"
+                        android:title="Subscribe For Newsletter"/>
+
+                </menu>
+            </item>
+        </group>
+    </menu>
