@@ -53,64 +53,61 @@
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
-            android:layout_below="@+id/password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:padding="12dp"
-            android:textAlignment="center"
-            android:text="Login"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/forgotpswd"
-            android:id="@+id/textView2"
-            android:paddingTop="@dimen/normal_margin_top"
-            android:paddingBottom="5dp"
-            android:layout_below="@+id/btn_login"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-    <View
-        android:id="@+id/view1"
-        android:paddingTop="@dimen/normal_margin"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="@color/dividercolor"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/normal_margin_top"></View>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="register"
-        android:paddingTop="@dimen/normal_margin_top"
-        android:text="@string/register"
-        android:layout_below="@+id/view1"
-        android:textSize="@dimen/largefont"
-        android:layout_alignLeft="@+id/view1"
-        android:layout_alignStart="@+id/view1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/guest"
         android:paddingTop="@dimen/normal_margin_top"
-        android:id="@+id/textView"
-        android:onClick="guest"
-        android:textSize="@dimen/largefont"
-        android:layout_alignTop="@+id/view1"
+        android:id="@+id/toGuest"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="14dp"
+        android:textSize="14dp" />
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgotpswd"
+            android:id="@+id/forgotPassword"
+            android:paddingTop="@dimen/normal_margin_top"
+            android:paddingBottom="5dp"
+        android:textColor="#ef5729"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/password"
+        android:textSize="14dp" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textAlignment="center"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:background="#3cb97b"
+        android:layout_marginBottom="18dp"
+        android:layout_above="@+id/toGuest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/normal_margin_top"
+        android:text="@string/register"
+        android:id="@+id/redirectRegister"
+        android:textSize="14dp"
+        android:layout_alignBaseline="@+id/toGuest"
+        android:layout_alignBottom="@+id/toGuest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class RegisterdHome extends AppCompatActivity
+public class RegisteredHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
@@ -60,7 +60,7 @@ public class RegisterdHome extends AppCompatActivity
 
                     //Toast.makeText(MainActivity.this, "Right Drawer - Upcoming Events", Toast.LENGTH_SHORT).show();
                 }else if (id == R.id.nav_subscribe) {
-                    Toast.makeText(RegisterdHome.this, "Right Drawer - Subscribtion", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisteredHome.this, "Right Drawer - Subscribtion", Toast.LENGTH_SHORT).show();
                 }
                 drawer.closeDrawer(GravityCompat.END); /*Important Line*/
                 return true;
