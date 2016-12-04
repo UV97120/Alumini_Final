@@ -2,9 +2,8 @@ package vishal.alumini_final;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,16 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 public class RegisteredHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registerd_home);
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -34,38 +32,17 @@ public class RegisteredHome extends AppCompatActivity
             }
         });
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        NavigationView leftnavigationView = (NavigationView) findViewById(R.id.home_left_nav_view);
+        leftnavigationView.setNavigationItemSelectedListener(this);
 
-        NavigationView rightNavigationView = (NavigationView) findViewById(R.id.right_guest_view);
-        assert rightNavigationView != null;
-        rightNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                // Handle Right navigation view item clicks here.
-                int id = item.getItemId();
-
-                if (id == R.id.nav_why_join_ckp_alumni) {
-                    //Intent intent = new Intent(MainActivity.this, RegistrationPhaseTwo.class);
-                    //startActivity(intent);
-                } else if (id == R.id.nav_upcoming_events) {
-                    //                 FragmentManager fm = getSupportFragmentManager();
-                    //                 fm.beginTransaction().replace(R.id.main_container, new UpcomingEventsCorner()).commit();
-
-                    //Toast.makeText(MainActivity.this, "Right Drawer - Upcoming Events", Toast.LENGTH_SHORT).show();
-                }else if (id == R.id.nav_subscribe) {
-                    Toast.makeText(RegisteredHome.this, "Right Drawer - Subscribtion", Toast.LENGTH_SHORT).show();
-                }
-                drawer.closeDrawer(GravityCompat.END); /*Important Line*/
-                return true;
-            }
-        });
+        NavigationView rightnavigationView = (NavigationView) findViewById(R.id.home_right_nav_view);
+        rightnavigationView.setNavigationItemSelectedListener(this);
 
     }
 
@@ -82,7 +59,7 @@ public class RegisteredHome extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.registerd_home, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -107,15 +84,21 @@ public class RegisteredHome extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id == R.id.nav_gallery) {
+        if (id == R.id.nav_add_post) {
+            // Handle the camera action
+        } else if (id == R.id.nav_View_post) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_Opportunities) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_contacth) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_abouth) {
 
-        } else if (id == R.id.nav_send) {
+        }else if (id == R.id.nav_why_join_ckp_alumni) {
+
+        } else if (id == R.id.nav_subscribe) {
+
+        } else if (id == R.id.nav_upcoming_events) {
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
