@@ -69,7 +69,7 @@ public class Login extends AppCompatActivity {
         toGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Guest.class));
+                startActivity(new Intent(getApplicationContext(), RegisteredHome.class));
             }
         });
 
