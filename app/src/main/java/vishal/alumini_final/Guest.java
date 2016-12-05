@@ -163,6 +163,8 @@ public class Guest extends AppCompatActivity
 
         }else if (id == R.id.nav_why_join_ckp_alumni) {
 
+            startActivity(new Intent(getApplicationContext(), WhyJoinCKP.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
