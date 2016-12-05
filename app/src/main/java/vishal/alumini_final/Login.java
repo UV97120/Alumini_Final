@@ -1,6 +1,7 @@
 package vishal.alumini_final;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
+    private static final String TAG = "LoginActivity";
 
     EditText email;
     EditText password;
@@ -48,6 +50,36 @@ public class Login extends AppCompatActivity {
         toRegister = (TextView)findViewById(R.id.redirectRegister);
         toGuest = (TextView)findViewById(R.id.toGuest);
 
+        /*
+        * Login Loading progress Bar
+        * */
+        assert login != null;
+        login.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Log.d(TAG, "Login");
+                login.setEnabled(false);
+
+                final ProgressDialog progressDialog = new ProgressDialog(Login.this, R.style.AppTheme_NoActionBar_PopupOverlay);
+                progressDialog.setIndeterminate(true);
+
+                progressDialog.setMessage("Authenticating...");
+                progressDialog.show();
+
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                // On complete call either onLoginSuccess or onLoginFailed
+                                //    onLoginSuccess();
+                                // onLoginFailed();
+                                progressDialog.dismiss();
+                            }
+                        }, 3000);
+            }
+
+        });
         jsonObject = new JSONObject();
 
 
