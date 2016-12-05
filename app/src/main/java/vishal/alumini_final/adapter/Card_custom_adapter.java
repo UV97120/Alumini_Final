@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import vishal.alumini_final.Guest;
 import vishal.alumini_final.R;
 import vishal.alumini_final.model.DataModel;
 
@@ -55,7 +54,7 @@ public class Card_custom_adapter extends RecyclerView.Adapter<Card_custom_adapte
         textViewName.setText(dataSet.get(listPosition).getName());
         textViewVersion.setText(dataSet.get(listPosition).getVersion());
        // imageView.setImageResource(dataSet.get(listPosition).getImage());
-        holder.cardView.setOnClickListener(Guest.myOnClickListener);
+//        holder.cardView.setOnClickListener(Guest.myOnClickListener);
     }
 
     @Override
