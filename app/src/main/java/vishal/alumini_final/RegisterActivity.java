@@ -129,9 +129,6 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
 //                String name = name.getText().toString();
                 JSONObject jsonObject = new JSONObject();
 
-
-
-
                 //-------------- Getting token from server------------------
 
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://www.jarvismedia.tech/final-ckp/Auth/Login", new Response.Listener<String>() {
