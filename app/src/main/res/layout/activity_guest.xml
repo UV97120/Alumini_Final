@@ -15,21 +15,21 @@
         android:layout_height="match_parent"/>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/guest_left_nav_view"
+        android:id="@+id/guest_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_guest2"
+        app:headerLayout="@layout/nav_header_guest"
         app:menu="@menu/activity_guest_left_drawer"/>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/guest_right_nav_view"
+        android:id="@+id/guest_right"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_guest2"
+        app:headerLayout="@layout/nav_header_guest"
         app:menu="@menu/activity_guest_right_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>
