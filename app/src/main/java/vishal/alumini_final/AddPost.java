@@ -220,10 +220,6 @@ public class AddPost extends AppCompatActivity {
 
     }
 
-
-
-
-
 }
 
 
