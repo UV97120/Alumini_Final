@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/normal_margin"
-    android:paddingRight="@dimen/normal_margin"
-    android:paddingTop="@dimen/normal_margin_top"
-    android:fitsSystemWindows="true"
-    tools:context=".CardViewContent">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:paddingLeft="@dimen/normal_margin"
+                                                 android:paddingRight="@dimen/normal_margin"
+                                                 android:paddingTop="@dimen/normal_margin_top"
+                                                 android:fitsSystemWindows="true"
+                                                 tools:context=".Single_Post_view">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -25,12 +25,12 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-    <!--        <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ckp"
-                android:scaleType="fitXY"/>
-        -->
+            <!--        <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ckp"
+                        android:scaleType="fitXY"/>
+                -->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"

@@ -11,6 +11,7 @@
     <dimen name="normal_margin_top">7dp</dimen>
     <dimen name="normal_margin">6dp</dimen>
 
+    <dimen name="distance_margin">30dp</dimen>
 
     <dimen name="normalfont">8dp</dimen>
     <dimen name="largefont">18dp</dimen>

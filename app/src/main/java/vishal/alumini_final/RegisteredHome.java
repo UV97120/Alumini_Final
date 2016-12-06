@@ -1,5 +1,6 @@
 package vishal.alumini_final;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -87,6 +88,8 @@ public class RegisteredHome extends AppCompatActivity
         if (id == R.id.nav_add_post) {
             // Handle the camera action
         } else if (id == R.id.nav_View_post) {
+            Intent viewpost = new Intent(getApplicationContext(),Single_Post_view.class);
+            startActivity(viewpost);
 
         } else if (id == R.id.nav_Opportunities) {
 

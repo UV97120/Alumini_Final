@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Single_Post_view"
+    tools:showIn="@layout/content_post_view_item">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/normal_margin_top"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <TextView
+            android:text="Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="61dp"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="65dp"
+            android:id="@+id/textView3"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:text="name of  Designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView8"
+            android:layout_alignLeft="@+id/textView6"
+            android:layout_alignStart="@+id/textView6"
+            android:id="@+id/textView9"/>
+
+        <TextView
+            android:text="Name of Platform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView15"
+            android:layout_alignBaseline="@+id/textView14"
+            android:layout_alignBottom="@+id/textView14"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_alignStart="@+id/textView13"/>
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/textView15"
+            android:layout_alignEnd="@+id/textView15"
+            android:id="@+id/textView17"
+            android:layout_alignTop="@+id/textView16"
+            android:layout_alignLeft="@+id/textView15"
+            android:layout_alignStart="@+id/textView15"/>
+
+        <TextView
+            android:text="Name Of Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="77dp"
+            android:layout_marginStart="77dp"
+            android:id="@+id/textView4"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_toRightOf="@+id/textView16"
+            android:layout_toEndOf="@+id/textView16"/>
+
+        <TextView
+            android:text="Name of Posted By"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:layout_alignBaseline="@+id/textView5"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"/>
+
+        <TextView
+            android:text="Name of refernce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView13"
+            android:layout_alignBaseline="@+id/textView12"
+            android:layout_alignBottom="@+id/textView12"
+            android:layout_alignLeft="@+id/textView9"
+            android:layout_alignStart="@+id/textView9"/>
+
+        <TextView
+            android:text="Posted BY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:id="@+id/textView5"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"/>
+
+        <TextView
+            android:text="Posted By"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:id="@+id/textView8"
+            android:layout_below="@+id/textView5"
+            android:layout_alignRight="@+id/textView5"
+            android:layout_alignEnd="@+id/textView5"/>
+
+        <TextView
+            android:text="Designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:id="@+id/textView12"
+            android:layout_below="@+id/textView8"
+            android:layout_alignRight="@+id/textView8"
+            android:layout_alignEnd="@+id/textView8"/>
+
+        <TextView
+            android:text="Reference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:id="@+id/textView14"
+            android:layout_below="@+id/textView12"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_alignStart="@+id/textView5"/>
+
+        <TextView
+            android:text="Platform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:id="@+id/textView16"
+            android:layout_below="@+id/textView14"
+            android:layout_alignLeft="@+id/textView8"
+            android:layout_alignStart="@+id/textView8"/>
+    </RelativeLayout></android.support.v4.widget.NestedScrollView>
