@@ -41,6 +41,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_post_view_item" />
+    <include layout="@layout/content_card_view_content" />
 
 </android.support.design.widget.CoordinatorLayout>
