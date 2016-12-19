@@ -46,19 +46,7 @@
         <activity android:name=".AddPost" />
         <activity android:name=".WhyJoinCKP" />
         <activity android:name=".Single_Post_view" />
-        <activity
-            android:name=".ProfileSettingsActivityListActivity"
-            android:label="@string/title_profilesettingsactivity_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".ProfileSettingsActivityDetailActivity"
-            android:label="@string/title_profilesettingsactivity_detail"
-            android:parentActivityName=".ProfileSettingsActivityListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="vishal.alumini_final.ProfileSettingsActivityListActivity" />
-        </activity>
+        <activity android:name=".ProfileSettingsActivity"></activity>
     </application>
 
 </manifest>

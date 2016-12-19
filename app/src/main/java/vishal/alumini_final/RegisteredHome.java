@@ -120,6 +120,13 @@ public class RegisteredHome extends AppCompatActivity
             SharedPreferences.Editor editor = sp.edit();
             editor.putBoolean("user_login_status", false);
             editor.putString("email", null);
+            finish();
+
+            startActivity(new Intent(getApplicationContext(), Login.class));
+        }
+
+        if(id == R.id.user_profile){
+            startActivity(new Intent(getApplicationContext(), ProfileSettingsActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

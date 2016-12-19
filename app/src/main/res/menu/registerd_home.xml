@@ -16,5 +16,5 @@
         android:id="@+id/user_logout"
         android:title="Logout"
         android:showAsAction="always"
-        tools:ignore="AlwaysShowAction" />
+        tools:ignore="AlwaysShowAction,AppCompatResource" />
 </menu>
