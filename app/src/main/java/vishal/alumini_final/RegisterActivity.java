@@ -1,7 +1,6 @@
 package vishal.alumini_final;
 
 
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
@@ -13,66 +12,61 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
+    private String ek;
+    private boolean flag;
+    private boolean token_status= false;
+    private String filepath;
+    private ArrayList<Integer> arrlist = new ArrayList<Integer>(80);
+    private Spinner spinner;
+    private Button choose;
+    private TextView loginLink;
+    private TextView fname;
+    private TextView lname;
+    private TextView email;
+    private Button register;
+    private String FileName;
+    private String bs64;//to convert filedata to bs64
+    private ImageView imgView;
+    private String newPath;
+    private String fileName;
 
-    String ek;
-    boolean flag;
-    String filepath;
-    ArrayList<Integer> arrlist = new ArrayList<Integer>(80);
-    Spinner spinner;
-    Button choose;
-    TextView loginLink;
-    TextView name;
-    TextView email;
-    Button register;
-    String FileName;
-    String bs64;//to convert filedata to bs64
-    ImageView imgView;
-    String newPath;
-    String fileName;
-
-    byte [] bytes;
-
+    private byte [] bytes;
 
     private static final int RESULT_LOAD_IMAGE = 1;
 
     private static final String ServerAddress = "http://jarvismedia.tech/final-ckp/Auth/Login";
     private String token=null;
-    RequestQueue queue;
-    RequestQueue registerQueue;
-
-
+    private RequestQueue registerQueue;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,18 +75,25 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
         //--------variable declaration----------
         choose = (Button) findViewById(R.id.btn_file_pick);
         loginLink = (TextView) findViewById(R.id.link_login);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        name = (TextView) findViewById(R.id.input_name);
+        //spinner = (MaterialSpinner) findViewById(R.id.spinner);
+        fname = (TextView) findViewById(R.id.input_fname);
+        lname = (TextView) findViewById(R.id.input_lname);
         email = (TextView) findViewById(R.id.input_email);
         register = (Button) findViewById(R.id.btn_signup);
 
-        ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrlist);
-        spinner.setAdapter(spinnerArrayAdapter);
-        spinner.setOnItemSelectedListener(RegisterActivity.this);
+        Intent intent = getIntent();
+
+        //token = intent.getStringExtra("token");
+
+//        Log.d("Token-From-Login", token);
+
+//        ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrlist);
+//        spinner.setAdapter(spinnerArrayAdapter);
+//        spinner.setOnItemSelectedListener(RegisterActivity.this);
+
 
 
         //------------calender year population----------------
-
 
         int base_year = 1950;
 
@@ -111,60 +112,33 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
                 Log.d("lodo", "activity khuli chutiya");
                 Intent i = new Intent(RegisterActivity.this, Login.class);
                 startActivity(i);
-
-
             }
 
         });
 
-
-
         //---------Register ServerSide Logic---------------
-
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), "inside On click", Toast.LENGTH_LONG).show();
 
 //                String name = name.getText().toString();
                 JSONObject jsonObject = new JSONObject();
 
                 //-------------- Getting token from server------------------
 
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://www.jarvismedia.tech/final-ckp/Auth/Login", new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        fetch(response.toString());
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                    }
-
-                });
-
-                queue = Volley.newRequestQueue(getApplicationContext());
-                queue.add(stringRequest);
-
-
                 //----------converting image int bs64-------------------
-
 
                 try {
                     InputStream inputStream = new FileInputStream(newPath);
-
-
 
                     byte[] buffer = new byte[8192];
 
                     int bytesRead;
 
                     ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-
 
                     while((bytesRead = inputStream.read(buffer)) != -1) {
                         output.write(buffer, 0, bytesRead);
@@ -182,60 +156,72 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
                     //e.printStackTrace();
                 }
 
-
+//               if(token_status==true)
+//               {
                 try {
                     // jsonObject.put("fileData", bs64);
 
-                    jsonObject.put("name", name.getText().toString());
+                    jsonObject.put("fname", fname.getText().toString());
+                    jsonObject.put("lname", lname.getText().toString());
                     jsonObject.put("email", email.getText().toString());
-                    jsonObject.put("year", ek);
-                    jsonObject.put("fileName", fileName);
-                    jsonObject.put("X-CSRF-TOKEN", token);
+                    //jsonObject.put("year", ek);
+                    jsonObject.put("filename", fileName);
+                    // jsonObject.put("X-CSRF-TOKEN", token);
+                    Log.d("Testing", "Inside Try");
                 } catch (JSONException e) {
+                    Log.d("Testing", "Inside Try");
                     e.printStackTrace();
                 }
 
                 Log.d("Test", jsonObject.toString());
                 //Log.d("", jsonObject.toString());
 
-
                 //----------------Login request--------------------
 
                 JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                        (Request.Method.POST, "http://www.jarvismedia.tech/final-ckp/android", jsonObject,new Response.Listener<JSONObject>() {
+                        (Request.Method.POST, "http://www.jarvismedia.tech/final-ckp/android/register", jsonObject,new Response.Listener<JSONObject>() {
 
                             @Override
                             public void onResponse(JSONObject response) {
-
-
                                 Log.d("response", response.toString());
-
                                 Toast.makeText(RegisterActivity.this, response.toString(), Toast.LENGTH_LONG).show();
-//                                try {
-//                                    if(response.get("status").equals("ok")){
-//                                        Toast.makeText(getApplicationContext(),"Success Bitch", Toast.LENGTH_LONG).show();
-//                                    }
-//                                    else {
-//                                        Toast.makeText(getApplicationContext(),"Mayank lodo bhosdino", Toast.LENGTH_LONG).show();
-//                                    }
-//                                    Log.d("bhosdike", response.toString());
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
+
                             }
                         }, new Response.ErrorListener() {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(RegisterActivity.this, error.toString()+"Bhosdike", Toast.LENGTH_LONG).show();
+                                Log.d("Error", error.toString());
 
+                                NetworkResponse response = error.networkResponse;
+                                if(response != null && response.data != null){
+
+                                    // Log.d("ERROR_MESSAGE", response.data.);
+                                }
+                                //Additional cases
                             }
-                        });
 
-                if (flag) {
-                    registerQueue = Volley.newRequestQueue(getApplicationContext());
-                    registerQueue.add(jsObjRequest);//year selected
-                }
+                        }){
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+
+                        Map<String, String> header = new HashMap<String, String>();
+                        header.put("Content-Type", "application/json");
+                        header.put("X-CSRF-TOKEN", token);
+                        return header;
+                    }
+                };
+
+
+
+                // if (flag) {
+                registerQueue = Volley.newRequestQueue(getApplicationContext());
+                registerQueue.add(jsObjRequest);//year selected
+                //}
+
+
             }
         });
         choose.setOnClickListener(new View.OnClickListener() {
@@ -258,10 +244,6 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
 
                 startActivityForResult(i, 1);
 
-
-
-
-
                 //------------Another Logic for file picker--------------
 
             }
@@ -270,17 +252,7 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
 
     private void fetch(String response) {
 
-        Document doc = Jsoup.parse(response);
-        Elements element = doc.select("meta");
-        for(Element elem:element) {
 
-            if(elem.attr("name").equals("csrf-token") ){
-
-                token = (elem.attr("content"));
-
-            }
-
-        }
     }
 
 
@@ -343,11 +315,6 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
 
         String fileNameTemp = name[(name.length)-1];
         FileName = fileNameTemp;
-
-
-
-
-
     }
 
     @Override
@@ -357,60 +324,7 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
         // ek = mytext.getText().toString();
 
         flag = true;
-
         ek = arrlist.get(position).toString();
-
-
-       /* if(mytext.getText().toString().equals("1950"))
-        {
-
-        }
-        else
-        {
-            JSONObject jsonObject = new JSONObject();
-            String url = "http://192.168.0.104:5000/register"; //"http://www.jarvismedia.tech/mayankwa/alumni/json.php?name=";
-
-            try {
-                jsonObject.put("year",mytext.getText().toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-
-                Log.d("Test", jsonObject.toString());
-
-                JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                        (Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>(){
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Toast.makeText(Registration.this, response.toString(), Toast.LENGTH_LONG).show();
-
-
-                                JSONObject jsonObjectnew=new JSONObject();
-                                if(jsonObjectnew.has("name") && !jsonObjectnew.isNull("name"))
-                                {
-                                    Toast.makeText(Registration.this, "Success Bitch", Toast.LENGTH_LONG).show();
-                                }else{
-                                    Toast.makeText(Registration.this, response.toString(), Toast.LENGTH_LONG).show();
-                                }
-
-                                Log.d("bhosdike", response.toString());
-                            }
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Registration.this, error.toString(), Toast.LENGTH_LONG).show();
-
-                            }
-                        });
-                RequestQueue queue = Volley.newRequestQueue(Registration.this);  // this = context
-
-                queue.add(jsObjRequest);
-
-            }
-
-        }*/
-        // Toast.makeText(Registration.this, "Year Selected is" + mytext.getText(), Toast.LENGTH_LONG).show();
     }
 
     @Override

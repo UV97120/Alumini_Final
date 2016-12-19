@@ -2,7 +2,9 @@ package vishal.alumini_final;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,19 +25,26 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class Login extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
-    EditText email;
-    EditText password;
-    JSONObject jsonObject;
-    TextView toRegister, toGuest, forgotPassword;
-    Button login;
-    String sendEmail;
-    String sendPassword;
+    private EditText email;
+    private EditText password;
+    private JSONObject jsonObject;
+    private TextView toRegister, toGuest, forgotPassword;
+    private Button login;
+    private String sendEmail;
+    private String sendPassword;
+    private String token;
+    private RequestQueue queue;
+    private RelativeLayout relativeLayout;
 
-    String url = "http://jarvismedia.tech/mayankwa/alumni/android-sync/android_login.php";
+    String url = "http://jarvismedia.tech/final-ckp/android/login";
 
 
     @Override
@@ -46,13 +56,40 @@ public class Login extends AppCompatActivity {
         password = (EditText) findViewById(R.id.input_password_login);
         login = (Button) findViewById(R.id.btn_login);
         forgotPassword = (TextView)findViewById(R.id.forgotPassword);
+        relativeLayout = (RelativeLayout)findViewById(R.id.scroll_view_login);
+
+        final SharedPreferences sp = this.getSharedPreferences("user_credential", Context.MODE_PRIVATE);
+
 
         toRegister = (TextView)findViewById(R.id.redirectRegister);
         toGuest = (TextView)findViewById(R.id.toGuest);
 
-        /*
-        * Login Loading progress Bar
-        * */
+
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://www.jarvismedia.tech/final-ckp/Auth/Login", new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                fetch(response.toString());
+//                Log.d("Token", token);
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+//            }
+//
+//        });
+//
+//        queue = Volley.newRequestQueue(getApplicationContext());
+//        queue.add(stringRequest);
+
+
+//        Snackbar snackbar = Snackbar.make(relativeLayout ,token, Snackbar.LENGTH_INDEFINITE);
+//        snackbar.show();
+//        /*
+        // * Login Loading progress Bar
+        //* */
         assert login != null;
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -128,6 +165,10 @@ public class Login extends AppCompatActivity {
                         try {
                             if(response.getString("Status").equals("Success"))
                             {
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString("email", email.getText().toString());
+                                editor.apply();
+
                                 Intent intent = new Intent(Login.this, RegisteredHome.class);
                                 startActivity(intent);
                             }
@@ -155,5 +196,20 @@ public class Login extends AppCompatActivity {
                 queue.add(jsonObjectRequest);
             }
         });
+    }
+
+    private void fetch(String response) {
+
+        Document doc = Jsoup.parse(response);
+        Elements element = doc.select("meta");
+        for(Element elem:element) {
+
+            if(elem.attr("name").equals("csrf-token") ){
+
+                token = (elem.attr("content"));
+
+            }
+
+        }
     }
 }

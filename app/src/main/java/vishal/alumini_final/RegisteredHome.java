@@ -86,6 +86,8 @@ public class RegisteredHome extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_add_post) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), AddPost.class));
             // Handle the camera action
         } else if (id == R.id.nav_View_post) {
             Intent viewpost = new Intent(getApplicationContext(),Single_Post_view.class);

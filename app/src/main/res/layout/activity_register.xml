@@ -22,12 +22,27 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_name"
+            <EditText android:id="@+id/input_fname"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:inputType="textCapWords"
                       android:drawablePadding="8dp"
-                      android:hint="Name"
+                      android:hint="First Name"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:drawablePadding="8dp"
+                android:hint="Last Name"
                 />
         </android.support.design.widget.TextInputLayout>
 
@@ -47,14 +62,6 @@
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner"
-                android:hint="Year of Passing"
-                />
-
-
 
         <!-- File Picker Button -->
         <android.support.v7.widget.AppCompatButton
