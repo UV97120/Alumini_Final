@@ -119,5 +119,7 @@
     </string>
     <string name="title_activity_contact">Map</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_profilesettingsactivity_list">Items</string>
+    <string name="title_profilesettingsactivity_detail">ProfileSettingsActivity Detail</string>
 
 </resources>

@@ -15,6 +15,7 @@
 
     <dimen name="normalfont">8dp</dimen>
     <dimen name="largefont">18dp</dimen>
+    <dimen name="item_width">200dp</dimen>
 
 
 </resources>

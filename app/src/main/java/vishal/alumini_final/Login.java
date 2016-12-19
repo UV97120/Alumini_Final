@@ -44,6 +44,8 @@ public class Login extends AppCompatActivity {
     private RequestQueue queue;
     private RelativeLayout relativeLayout;
 
+    private boolean user_login_status = false;
+
     String url = "http://jarvismedia.tech/final-ckp/android/login";
 
 
@@ -59,7 +61,12 @@ public class Login extends AppCompatActivity {
         relativeLayout = (RelativeLayout)findViewById(R.id.scroll_view_login);
 
         final SharedPreferences sp = this.getSharedPreferences("user_credential", Context.MODE_PRIVATE);
+        boolean user_status = sp.getBoolean("user_login_status", false);
 
+        if(user_status){
+            finish();
+            startActivity(new Intent(getApplicationContext(), RegisteredHome.class));
+        }
 
         toRegister = (TextView)findViewById(R.id.redirectRegister);
         toGuest = (TextView)findViewById(R.id.toGuest);
@@ -165,9 +172,12 @@ public class Login extends AppCompatActivity {
                         try {
                             if(response.getString("Status").equals("Success"))
                             {
+
+                                user_login_status = true;
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString("email", email.getText().toString());
-                                editor.apply();
+                                editor.putBoolean("user_login_status", user_login_status);
+                                editor.commit();
 
                                 Intent intent = new Intent(Login.this, RegisteredHome.class);
                                 startActivity(intent);

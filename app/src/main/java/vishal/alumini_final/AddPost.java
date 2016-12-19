@@ -42,9 +42,9 @@ public class AddPost extends AppCompatActivity {
     private ImageView imgView;
     private static final int RESULT_LOAD_IMAGE = 1;
     private byte [] bytes;
-    private String url="http://www.jarvismedia.tech/final-ckp/addpost/";
+    private String url="http://www.jarvismedia.tech/final-ckp/android/addpost/";
     private RequestQueue AddPostQueue;
-
+    private int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,12 +120,20 @@ public class AddPost extends AppCompatActivity {
                 }
 */
 
-                String semail = sp.getString("user_credential", "email");
-                Log.d("sharedEmail", semail);
+                String semail = sp.getString("email", "not_reg");
+                if(semail.equals("not_reg"))
+                {
+                    Toast.makeText(getApplicationContext(), "Email not set bro", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Log.d("sharedEmail", semail);
 
-                url = url+semail;
-
-                Log.d("url", url);
+                    if(flag==0) {
+                        url = url + semail;
+                        flag=1;
+                        Log.d("url", url);
+                    }
+                }
 
                 JSONObject jsonObject= new JSONObject();
                 try {
