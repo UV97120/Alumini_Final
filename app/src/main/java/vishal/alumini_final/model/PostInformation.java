@@ -8,9 +8,31 @@ import android.graphics.Bitmap;
 
 public class PostInformation {
     String Title;
+    String Designation;
+    String Reference;
+    String Description;
     String Content;
     String TimeStamp;
     String UserName;
+    String Tech;
+    String Branch;
+
+    public String getBranch() {
+        return Branch;
+    }
+
+    public void setBranch(String branch) {
+        Branch = branch;
+    }
+
+    public String getTech() {
+        return Tech;
+    }
+
+    public void setTech(String tech) {
+        Tech = tech;
+    }
+
     Bitmap image;
 
     public Bitmap getImage() {
@@ -21,9 +43,34 @@ public class PostInformation {
         this.image = image;
     }
 
+    public String getDesignation() {
+        return Designation;
+    }
+
+    public void setDesignation(String designation) {
+        Designation = designation;
+    }
+
+    public String getReference() {
+        return Reference;
+    }
+
+    public void setReference(String reference) {
+        Reference = reference;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
     public String getTitle() {
 
         return Title;
+
     }
 
     public String getContent() {

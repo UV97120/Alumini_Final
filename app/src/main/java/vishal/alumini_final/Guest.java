@@ -187,8 +187,5 @@ public class Guest extends AppCompatActivity
             context.startActivity(intent);
 
         }
-
     }
-
-
 }
