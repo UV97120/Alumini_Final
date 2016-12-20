@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ForgotPassword extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class ForgotPassword extends AppCompatActivity {
     private TextView submit;
     private String url = "http://jarvismedia.tech/final-ckp/android/resetpassword/";
     private RequestQueue queue;
+    private boolean password_flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +39,29 @@ public class ForgotPassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                url = url+email.getText().toString();
+                if(password_flag==false){
+                    url = url+email.getText().toString();
+                    password_flag = true;
+                }
+
                 JSONObject jsonObject = new JSONObject();
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONObject>() {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
 //                        Toast.makeText(Login.this, response.toString(), Toast.LENGTH_LONG).show();
-                 }
+                        try {
+                            if(response.get("Status").equals("Success")) {
+                                Toast.makeText(getApplicationContext(), "password updated", Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "password updation failed", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                 }, new Response.ErrorListener() {
 
                     @Override
@@ -57,14 +74,7 @@ public class ForgotPassword extends AppCompatActivity {
 
                 queue = Volley.newRequestQueue(getApplicationContext());
                 queue.add(jsonObjectRequest);
-
-
             }
         });
-
-
-
-
-
     }
 }

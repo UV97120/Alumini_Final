@@ -39,6 +39,7 @@ public class RegisteredHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RequestQueue queue;
+    private RequestQueue nameQueue;
     private SearchView searchView;
     private ListView searchResults;
     private ArrayList<PostInformation> postResults = new ArrayList<PostInformation>();
@@ -82,7 +83,7 @@ public class RegisteredHome extends AppCompatActivity
 
 //        vishalseth
 
-        JSONObject jsonObject = new JSONObject();
+        final JSONObject jsonObject = new JSONObject();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://jarvismedia.tech/final-ckp/android/viewpost", jsonObject, new Response.Listener<JSONObject>() {
 
             @Override
@@ -102,7 +103,28 @@ public class RegisteredHome extends AppCompatActivity
                         postInformation.setReference(jsonObject1.getString("reference"));
                         postInformation.setBranch(jsonObject1.getString("branchpost"));
                         postInformation.setTimeStamp(jsonObject1.getString("created_at"));
-                        postInformation.setUserName(jsonObject1.getString("userid"));
+                        //postInformation.setUserName(jsonObject1.getString("userid"));
+
+                        JSONObject jsonObject2 = new JSONObject();
+                       // jsonObject2.put("userid", jsonObject1.getString("userid"));
+
+                        String uid = jsonObject1.getString("userid");
+                        String newurl = "http://jarvismedia.tech/final-ckp/android/getname";
+                        //newurl = newurl+uid;
+                        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.GET, newurl, jsonObject2, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("name", response.toString());
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("error ", error.toString());
+                            }
+                        });
+
+                        nameQueue = Volley.newRequestQueue(getApplicationContext());
+                        nameQueue.add(jsonObjectRequest1);
 
                         postResults.add(postInformation);
 
@@ -114,10 +136,7 @@ public class RegisteredHome extends AppCompatActivity
                     e.printStackTrace();
                 }
 
-
                 Log.d("viewpost", response.toString());
-
-//                Log.d("bhosdike", response.toString());
             }
         }, new Response.ErrorListener() {
 
@@ -125,7 +144,6 @@ public class RegisteredHome extends AppCompatActivity
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
                 Log.d("bhosdike_lode", error.toString());
-
             }
         });
 
@@ -171,7 +189,6 @@ public class RegisteredHome extends AppCompatActivity
             editor.putBoolean("user_login_status", false);
             editor.putString("email", null);
             finish();
-
             startActivity(new Intent(getApplicationContext(), Login.class));
         }
 
