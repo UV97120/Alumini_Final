@@ -122,4 +122,16 @@
     <string name="title_profilesettingsactivity_list">Items</string>
     <string name="title_profilesettingsactivity_detail">ProfileSettingsActivity Detail</string>
 
+
+    <string name="aboutus1">Students are the most important asset of the Institute. Alumni are ambassadors of the Institute in the society and industry scattered over the world. Alums comprise the most likely candidate pool for career program, curriculum advisory committees, mentors, employers of our graduates, employees at CKPCET, returning students and as passionate well–wishers for the progress of their alma–matters .</string>
+    <string name="aboutus2">"The CKPCETAA aims to serve the needs of its alumni by helping them advance in their careers through working for satisfying their needs for knowledge inputs and through networking, to develop synergistic plans to support the institutions for achieving their mission, and to enable the institutes to add value to all its stake holders through the membership of CKPCETAA."</string>
+    <string name="aboutus3">The purpose of establishing this Association is to make our Institution. Alums generate the kinetic energy which can be strategically tapped by creating network of all alumni.</string>
+
+    <string name="whyjoinckp1">Reunions: Can easily access and get involved in the association
+Recruit: Complimentary Career Coaching Consultation Session, Career Advisory Network, Career Development Network</string>
+    <string name="whyjoinckp2">Alumni Programs
+Student Programs like Scholarships</string>
+    <string name="whyjoinckp3">E-newsletter
+        E-Mail facility</string>
+
 </resources>

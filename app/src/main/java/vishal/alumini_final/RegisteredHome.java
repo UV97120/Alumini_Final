@@ -193,7 +193,7 @@ public class RegisteredHome extends AppCompatActivity
         }
 
         if(id == R.id.user_profile){
-            startActivity(new Intent(getApplicationContext(), ProfileSettingsActivity.class));
+            startActivity(new Intent(getApplicationContext(), Profile_settings.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -218,13 +218,18 @@ public class RegisteredHome extends AppCompatActivity
         } else if (id == R.id.nav_contacth) {
 
         } else if (id == R.id.nav_abouth) {
+            Intent aboutus = new Intent(RegisteredHome.this,About_us.class);
+            startActivity(aboutus);
 
         }else if (id == R.id.nav_why_join_ckp_alumni) {
-
+            startActivity(new Intent(getApplicationContext(), WhyJoinCKP.class));
         } else if (id == R.id.nav_subscribe) {
 
         } else if (id == R.id.nav_upcoming_events) {
 
+        } else if (id == R.id.nav_Opportunities) {
+            Intent setting = new Intent(RegisteredHome.this,Profile_settings.class);
+            startActivity(setting);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

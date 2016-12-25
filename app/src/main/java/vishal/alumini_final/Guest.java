@@ -4,21 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,9 +26,6 @@ import java.util.List;
 
 import vishal.alumini_final.adapter.Card_custom_adapter;
 import vishal.alumini_final.model.DataModel;
-
-import static android.R.attr.data;
-import static vishal.alumini_final.R.attr.layoutManager;
 
 public class Guest extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,7 +48,7 @@ public class Guest extends AppCompatActivity
 
         /*-------------------------Swipe Refresh layout----------------------------*/
         swipeRefreshLayout=(SwipeRefreshLayout)findViewById(R.id.activity_main_swipe_refresh_layout);
-        swipeRefreshLayout.setColorSchemeColors(android.R.color.holo_blue_dark,android.R.color.holo_blue_light,android.R.color.holo_green_light,android.R.color.holo_green_dark);
+  //      swipeRefreshLayout.setColorSchemeColors(android.R.color.holo_blue_dark,android.R.color.holo_blue_light,android.R.color.holo_green_light,android.R.color.holo_green_dark);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             public void onRefresh() {
@@ -156,6 +153,8 @@ public class Guest extends AppCompatActivity
         } else if (id == R.id.contactus) {
 
         } else if (id == R.id.aboutus) {
+            Intent aboutus = new Intent (Guest.this,About_us.class);
+            startActivity(aboutus);
 
         } else if (id == R.id.nav_subscribe) {
 
