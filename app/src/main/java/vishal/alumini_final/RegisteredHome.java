@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,7 +39,9 @@ import vishal.alumini_final.model.PostInformation;
 
 public class RegisteredHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private Menu menu;
+    private String LOG_TAG = "Search";
+    private String SEARCH;
     private RequestQueue queue;
     private RequestQueue nameQueue;
     private SearchView searchView;
@@ -70,10 +74,11 @@ public class RegisteredHome extends AppCompatActivity
         rightnavigationView.setNavigationItemSelectedListener(this);
 
 
-        searchView = (SearchView)findViewById(R.id.action_search_reg);
+//        searchView = (SearchView) findViewById(R.id.action_search_reg);
+
         //searchResults = (ListView)findViewById(R.id.listview_search);
 
-        //PostAdapter postAdapter = new PostAdapter();
+    //PostAdapter postAdapter = new PostAdapter();
         recyclerView = (RecyclerView)findViewById(R.id.postRecyclerView2);
 
         Log.d("recyclerview", recyclerView+"");
@@ -157,6 +162,58 @@ public class RegisteredHome extends AppCompatActivity
 
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.registerd_home, menu);
+      /*------------------------------SEARCH VIEW-------------------------------*/
+        SearchView search=(SearchView) menu.findItem(R.id.action_search_reg).getActionView();
+        search.setQueryHint("SearchView");
+
+        //   *** setOnQueryTextFocusChangeListener ***
+        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // TODO Auto-generated method stub
+                Log.d("search query 1", LOG_TAG);
+                String search = String.valueOf(hasFocus);
+                Toast.makeText(getBaseContext(), String.valueOf(hasFocus),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //*** setOnQueryTextListener ***
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // TODO Auto-generated method stub
+                SEARCH = query;
+                Toast.makeText(getBaseContext(), query,Toast.LENGTH_SHORT).show();
+                Log.d("search query 2", LOG_TAG);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // TODO Auto-generated method stub
+                Log.d("search query 3", LOG_TAG);
+                Toast.makeText(getBaseContext(), newText, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+
+    /*---------------------------------------------------------------------------*/
+
+
+
+
+
+        return true;
+    }
+
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -166,12 +223,6 @@ public class RegisteredHome extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.registerd_home, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -203,7 +254,7 @@ public class RegisteredHome extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -229,13 +280,13 @@ public class RegisteredHome extends AppCompatActivity
 
         } else if (id == R.id.nav_upcoming_events) {
 
-        } else if (id == R.id.nav_Opportunities) {
-            Intent setting = new Intent(RegisteredHome.this,Profile_settings.class);
-            startActivity(setting);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
 
