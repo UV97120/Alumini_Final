@@ -24,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/profile_icon"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:id="@+id/profile_id" />
 
     </LinearLayout>
 
