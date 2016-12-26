@@ -201,13 +201,12 @@ public class RegisteredHome extends AppCompatActivity
                     e.printStackTrace();
                 }
                 JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                        (Request.Method.POST, "http://www.jarvismedia.tech/final-ckp/android/requestquery", jsonObject,new Response.Listener<JSONObject>() {
+                        (Request.Method.POST, "http://www.jarvismedia.tech/final-ckp/android/searchpost", jsonObject,new Response.Listener<JSONObject>() {
 
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.d("response", response.toString());
                                 Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-
                             }
                         }, new Response.ErrorListener() {
 
@@ -235,9 +234,6 @@ public class RegisteredHome extends AppCompatActivity
                         return header;
                     }
                 };
-
-
-
                 // if (flag) {
                 registerQueue2 = Volley.newRequestQueue(getApplicationContext());
                 registerQueue2.add(jsObjRequest);//year selected
@@ -324,6 +320,9 @@ public class RegisteredHome extends AppCompatActivity
         } else if (id == R.id.nav_Opportunities) {
 
         } else if (id == R.id.nav_contacth) {
+            Intent viewpost = new Intent(getApplicationContext(),Contact_us.class);
+            startActivity(viewpost);
+
 
         } else if (id == R.id.nav_abouth) {
             Intent aboutus = new Intent(RegisteredHome.this,About_us.class);
