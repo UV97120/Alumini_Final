@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/background"
@@ -15,103 +16,118 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:weightSum="1">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Add Post"
-    android:textAlignment="center"
-    android:textColor="@android:color/black"
-    android:textSize="20dp"/>
         <!--  Post Label -->
-        <android.support.design.widget.TextInputLayout
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/boundary">
+            app:srcCompat="@drawable/guest"
+            android:id="@+id/imageView2" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <EditText android:id="@+id/post_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:maxLines="1"
                 android:drawablePadding="8dp"
+                android:drawableRight="@drawable/ic_title_black_24dp"
                 android:hint="Post Title"
                 />
         </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"></View>
         <!--  Post Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/boundary">
+            >
             <EditText android:id="@+id/techorplatform"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
+                android:drawableRight="@drawable/ic_build_black_24dp"
                 android:maxLines="1"
                 android:drawablePadding="8dp"
                 android:hint="Technology/Platform"
                 />
         </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"></View>
+
         <!--  Post Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/boundary">
+            >
             <EditText android:id="@+id/designation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
+                android:drawableRight="@drawable/ic_book_black_24dp"
                 android:drawablePadding="8dp"
                 android:maxLines="1"
                 android:hint="Designation"
                 />
         </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"></View>
+
         <!--  Post Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/boundary">
+            >
             <EditText android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_description_black_24dp"
                 android:inputType="textCapWords"
                 android:drawablePadding="8dp"
                 android:hint="Description"
                 />
         </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"></View>
+
         <!--  Post Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/boundary">
+>
             <EditText android:id="@+id/reference"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:drawablePadding="8dp"
+                android:drawableRight="@drawable/ic_add_box_black_24dp"
                 android:hint="Reference"
                 />
         </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"></View>
 
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/boundary">
+            >
             <EditText android:id="@+id/branch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
+                android:drawableRight="@drawable/ic_list_black_24dp"
                 android:drawablePadding="8dp"
                 android:hint="Intended Branch"
                 />

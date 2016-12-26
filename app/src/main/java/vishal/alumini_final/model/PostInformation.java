@@ -1,7 +1,5 @@
 package vishal.alumini_final.model;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by razintailor on 03/08/16.
  */
@@ -33,13 +31,13 @@ public class PostInformation {
         Tech = tech;
     }
 
-    Bitmap image;
+    String image;
 
-    public Bitmap getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

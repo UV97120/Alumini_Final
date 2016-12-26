@@ -5,7 +5,8 @@
     android:layout_margin="8dp">
    <RelativeLayout
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="match_parent"
+       android:padding="8dp">
        <ImageView
            android:layout_width="100dp"
            android:layout_height="100dp"
@@ -25,7 +26,7 @@
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:maxLines="3"
+           android:maxLines="2"
            android:id="@+id/contentPost"
            android:text="asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfas"
            android:layout_toRightOf="@+id/imagePost"

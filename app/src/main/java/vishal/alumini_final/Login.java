@@ -62,8 +62,8 @@ public class Login extends AppCompatActivity {
 
         final SharedPreferences sp = this.getSharedPreferences("user_credential", Context.MODE_PRIVATE);
         boolean user_status = sp.getBoolean("user_login_status", false);
-
-        if(user_status){
+        Toast.makeText(this, user_status+"", Toast.LENGTH_LONG).show();
+        if(true){
             finish();
             startActivity(new Intent(getApplicationContext(), RegisteredHome.class));
         }

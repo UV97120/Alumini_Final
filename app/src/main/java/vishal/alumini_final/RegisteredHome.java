@@ -44,6 +44,7 @@ public class RegisteredHome extends AppCompatActivity
     private ListView searchResults;
     private ArrayList<PostInformation> postResults = new ArrayList<PostInformation>();
     private ArrayList<PostInformation> filteredResults = new ArrayList<PostInformation>();
+    private String imageuri= "http://jarvismedia.tech/final-ckp/files/image/";
 
     private RecyclerView recyclerView;
 
@@ -104,6 +105,7 @@ public class RegisteredHome extends AppCompatActivity
                         postInformation.setBranch(jsonObject1.getString("branchpost"));
                         postInformation.setTimeStamp(jsonObject1.getString("created_at"));
                         //postInformation.setUserName(jsonObject1.getString("userid"));
+                        postInformation.setImage(imageuri+jsonObject1.getString("filename"));
 
                         JSONObject jsonObject2 = new JSONObject();
                        // jsonObject2.put("userid", jsonObject1.getString("userid"));
@@ -111,20 +113,20 @@ public class RegisteredHome extends AppCompatActivity
                         String uid = jsonObject1.getString("userid");
                         String newurl = "http://jarvismedia.tech/final-ckp/android/getname";
                         //newurl = newurl+uid;
-                        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.GET, newurl, jsonObject2, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("name", response.toString());
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.d("error ", error.toString());
-                            }
-                        });
-
-                        nameQueue = Volley.newRequestQueue(getApplicationContext());
-                        nameQueue.add(jsonObjectRequest1);
+//                        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.GET, newurl, jsonObject2, new Response.Listener<JSONObject>() {
+//                            @Override
+//                            public void onResponse(JSONObject response) {
+//                                Log.d("name", response.toString());
+//                            }
+//                        }, new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                Log.d("error ", error.toString());
+//                            }
+//                        });
+//
+//                        nameQueue = Volley.newRequestQueue(getApplicationContext());
+//                        nameQueue.add(jsonObjectRequest1);
 
                         postResults.add(postInformation);
 
@@ -183,11 +185,11 @@ public class RegisteredHome extends AppCompatActivity
             return true;
         }
         if(id == R.id.user_logout){
-
             final SharedPreferences sp = this.getSharedPreferences("user_credential", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putBoolean("user_login_status", false);
             editor.putString("email", null);
+            editor.commit();
             finish();
             startActivity(new Intent(getApplicationContext(), Login.class));
         }
