@@ -1,69 +1,111 @@
-<?xml version="1.0"?>
-    <android.support.design.widget.CoordinatorLayout
-    android:layout_height="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_profile_settings"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="vishal.alumini_final.Profile_settings">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_height="300dp"
-        android:layout_width="match_parent"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:layout_height="match_parent"
+      android:weightSum="1">
 
-    <android.support.design.widget.CollapsingToolbarLayout
-        android:id="@+id/collapsing_toolbar"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        app:contentScrim="?attr/colorPrimary">
 
     <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="90dp">
-
-            <ImageView android:id="@+id/profile_id"
-               android:layout_height="wrap_content"
-               android:layout_width="wrap_content"
-               android:scaleType="fitXY"/>
-
-        </LinearLayout>
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingRight="16dp"
-                android:layout_marginTop="230dp"
-                android:layout_gravity="end"
-                android:onClick="filepick"
-                android:id="@+id/btn_pick"/>
-
-
-        <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
-        app:layout_collapseMode="pin"/>
+        android:layout_weight="0.55"
+        android:layout_height="match_parent">
 
-
-
-    </android.support.design.widget.CollapsingToolbarLayout>
-
-</android.support.design.widget.AppBarLayout>
-
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="#ffe5e5e5">
-        <include
-            layout="@layout/profile_content_show"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </android.support.v4.widget.NestedScrollView>
+            android:layout_height="match_parent"
+            android:src="@drawable/profile_icon"
+            android:scaleType="fitCenter"/>
 
-</android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:layout_marginTop="8dp">
+
+
+
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:paddingTop="@dimen/activity_vertical_margin"
+               android:paddingLeft="@dimen/activity_horizontal_margin"
+               android:background="@drawable/textview_border"
+               android:text="First Name"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:paddingTop="@dimen/activity_vertical_margin"
+               android:paddingLeft="@dimen/activity_horizontal_margin"
+               android:background="@drawable/textview_border"
+               android:text="LAST Name"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:paddingTop="@dimen/activity_vertical_margin"
+               android:paddingLeft="@dimen/activity_horizontal_margin"
+               android:text="Email"/>
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:paddingTop="@dimen/activity_vertical_margin"
+               android:paddingLeft="@dimen/activity_horizontal_margin"
+               android:background="@drawable/textview_border"
+               android:hint="E-mail"/>
+
+           <TextView
+               android:layout_width="115dp"
+               android:layout_height="wrap_content"
+               android:paddingTop="@dimen/activity_vertical_margin"
+               android:paddingLeft="@dimen/activity_horizontal_margin"
+               android:text="Password"/>
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:paddingTop="@dimen/activity_vertical_margin"
+               android:paddingLeft="@dimen/activity_horizontal_margin"
+               android:background="@drawable/textview_border"
+               android:hint="Password"/>
+
+           <Button
+               android:text="Apply changes"
+               android:layout_marginTop="4dp"
+               android:paddingLeft="16dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/button3"/>
+
+
+       </LinearLayout>
+
+
+
+
+   </LinearLayout>
+
+
+
+  </LinearLayout>
+
+
+</LinearLayout>

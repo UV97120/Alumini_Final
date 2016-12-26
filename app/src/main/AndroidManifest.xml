@@ -49,7 +49,6 @@
         <activity android:name=".About_us"/>
         <activity android:name=".CardViewContent"/>
         <activity android:name=".Profile_settings">
-
         </activity>
     </application>
 
