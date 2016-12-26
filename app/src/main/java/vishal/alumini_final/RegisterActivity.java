@@ -166,6 +166,7 @@ public class RegisterActivity extends Activity implements AdapterView.OnItemSele
                     jsonObject.put("email", email.getText().toString());
                     //jsonObject.put("year", ek);
                     jsonObject.put("filename", fileName);
+                    jsonObject.put("data", bs64);
                     // jsonObject.put("X-CSRF-TOKEN", token);
                     Log.d("Testing", "Inside Try");
                 } catch (JSONException e) {
