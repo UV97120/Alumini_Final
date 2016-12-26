@@ -50,6 +50,8 @@
         <activity android:name=".CardViewContent"/>
         <activity android:name=".Profile_settings">
         </activity>
+        <activity android:name=".Contact_us">
+        </activity>
     </application>
 
 </manifest>

@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import vishal.alumini_final.adapter.PostAdapter;
 import vishal.alumini_final.model.PostInformation;
@@ -40,6 +44,8 @@ import vishal.alumini_final.model.PostInformation;
 public class RegisteredHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Menu menu;
+    private String token=null;
+    private RequestQueue registerQueue2;
     private String LOG_TAG = "Search";
     private String SEARCH;
     private RequestQueue queue;
@@ -167,7 +173,7 @@ public class RegisteredHome extends AppCompatActivity
         getMenuInflater().inflate(R.menu.registerd_home, menu);
       /*------------------------------SEARCH VIEW-------------------------------*/
         SearchView search=(SearchView) menu.findItem(R.id.action_search_reg).getActionView();
-        search.setQueryHint("SearchView");
+        search.setQueryHint("Search Branch");
 
         //   *** setOnQueryTextFocusChangeListener ***
         search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -188,6 +194,55 @@ public class RegisteredHome extends AppCompatActivity
             public boolean onQueryTextSubmit(String query) {
                 // TODO Auto-generated method stub
                 SEARCH = query;
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("query",SEARCH);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                        (Request.Method.POST, "http://www.jarvismedia.tech/final-ckp/android/requestquery", jsonObject,new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("response", response.toString());
+                                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(RegisteredHome.this, error.toString()+"Bhosdike", Toast.LENGTH_LONG).show();
+                                Log.d("Error", error.toString());
+
+                                NetworkResponse response = error.networkResponse;
+                                if(response != null && response.data != null){
+
+                                    // Log.d("ERROR_MESSAGE", response.data.);
+                                }
+                                //Additional cases
+                            }
+
+                        }){
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+
+                        Map<String, String> header = new HashMap<String, String>();
+                        header.put("Content-Type", "application/json");
+                    //    header.put("X-CSRF-TOKEN", token);
+                        return header;
+                    }
+                };
+
+
+
+                // if (flag) {
+                registerQueue2 = Volley.newRequestQueue(getApplicationContext());
+                registerQueue2.add(jsObjRequest);//year selected
+                //}
+
                 Toast.makeText(getBaseContext(), query,Toast.LENGTH_SHORT).show();
                 Log.d("search query 2", LOG_TAG);
                 return false;
