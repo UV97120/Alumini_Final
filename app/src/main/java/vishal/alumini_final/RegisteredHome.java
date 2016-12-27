@@ -21,8 +21,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -35,8 +33,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import vishal.alumini_final.adapter.PostAdapter;
 import vishal.alumini_final.model.PostInformation;
@@ -194,67 +190,26 @@ public class RegisteredHome extends AppCompatActivity
             public boolean onQueryTextSubmit(String query) {
                 // TODO Auto-generated method stub
                 SEARCH = query;
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("query",SEARCH);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                        (Request.Method.POST, "http://www.jarvismedia.tech/final-ckp/android/searchpost", jsonObject,new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("response", response.toString());
-                                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-                            }
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(RegisteredHome.this, error.toString()+"Bhosdike", Toast.LENGTH_LONG).show();
-                                Log.d("Error", error.toString());
-
-                                NetworkResponse response = error.networkResponse;
-                                if(response != null && response.data != null){
-
-                                    // Log.d("ERROR_MESSAGE", response.data.);
-                                }
-                                //Additional cases
-                            }
-
-                        }){
-
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-
-                        Map<String, String> header = new HashMap<String, String>();
-                        header.put("Content-Type", "application/json");
-                    //    header.put("X-CSRF-TOKEN", token);
-                        return header;
-                    }
-                };
-                // if (flag) {
-                registerQueue2 = Volley.newRequestQueue(getApplicationContext());
-                registerQueue2.add(jsObjRequest);//year selected
-                //}
-
-                Toast.makeText(getBaseContext(), query,Toast.LENGTH_SHORT).show();
+                Log.d("submitquery", query);
+                Intent myintent=new Intent(RegisteredHome.this, Search_Activity.class).putExtra("qry",SEARCH);
+                startActivity(myintent);
                 Log.d("search query 2", LOG_TAG);
+                Intent i2 = new Intent(RegisteredHome.this,Search_Activity.class);
+                startActivity(i2);
                 return false;
             }
+
+    /*---------------------------------------------------------------------------*/
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 // TODO Auto-generated method stub
                 Log.d("search query 3", LOG_TAG);
-                Toast.makeText(getBaseContext(), newText, Toast.LENGTH_SHORT).show();
+    //            Toast.makeText(getBaseContext(), newText, Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
 
-
-    /*---------------------------------------------------------------------------*/
 
 
 
@@ -313,12 +268,6 @@ public class RegisteredHome extends AppCompatActivity
             finish();
             startActivity(new Intent(getApplicationContext(), AddPost.class));
             // Handle the camera action
-        } else if (id == R.id.nav_View_post) {
-            Intent viewpost = new Intent(getApplicationContext(),Single_Post_view.class);
-            startActivity(viewpost);
-
-        } else if (id == R.id.nav_Opportunities) {
-
         } else if (id == R.id.nav_contacth) {
             Intent viewpost = new Intent(getApplicationContext(),Contact_us.class);
             startActivity(viewpost);
