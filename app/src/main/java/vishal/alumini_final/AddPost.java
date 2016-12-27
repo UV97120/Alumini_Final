@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,10 @@ import com.nononsenseapps.filepicker.FilePickerActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class AddPost extends AppCompatActivity {
@@ -94,7 +99,7 @@ public class AddPost extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* try {
+                try {
                     InputStream inputStream = new FileInputStream(newPath);
 
                     byte[] buffer = new byte[8192];
@@ -118,7 +123,6 @@ public class AddPost extends AppCompatActivity {
                     Log.d("bs64_2", e.toString());
                     //e.printStackTrace();
                 }
-*/
 
                 String semail = sp.getString("email", "not_reg");
                 if(semail.equals("not_reg"))
@@ -143,7 +147,8 @@ public class AddPost extends AppCompatActivity {
                     jsonObject.put("description", description.getText().toString());
                     jsonObject.put("reference", reference.getText().toString().trim());
                     jsonObject.put("branch", branch.getText().toString().trim());
-                    jsonObject.put("file_name", fileName);
+                    jsonObject.put("filename", fileName);
+                    jsonObject.put("data", bs64);
                    // jsonObject.put()
                     Log.d("jsobj", jsonObject.toString());
 
@@ -151,7 +156,7 @@ public class AddPost extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.d("post_response", response.toString());
-                            //startActivity(new Intent(getApplicationContext(), RegisteredHome.class));
+                            startActivity(new Intent(getApplicationContext(), RegisteredHome.class));
                         }
                     }, new Response.ErrorListener() {
                         @Override

@@ -1,9 +1,11 @@
 package vishal.alumini_final.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import vishal.alumini_final.R;
+import vishal.alumini_final.SinglePost;
 import vishal.alumini_final.model.PostInformation;
 
 /**
@@ -30,6 +33,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
     Context context;
     private GestureDetectorCompat mDetector;
+
+    private String url ="http://jarvismedia.tech/final-ckp/android/singlepost/";
+    private String postid = null;
 
 
     ArrayList<PostInformation> arrayList = new ArrayList<>();
@@ -49,18 +55,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         PostInformation postInformation = arrayList.get(position);
+
         Uri uri = Uri.parse(postInformation.getImage());
         View post_card = holder.view;
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+
         TextView title = (TextView)post_card.findViewById(R.id.titlePost);
         TextView description = (TextView)post_card.findViewById(R.id.contentPost);
         TextView branch = (TextView)post_card.findViewById(R.id.branchTitle);
@@ -76,6 +78,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
         timestamp.setText(arrayList.get(position).getTimeStamp());
         user_id.setText(arrayList.get(position).getUserName());
 
+        postid = arrayList.get(position).getPostid();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "clicked"+position, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context, SinglePost.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("postid", postid);
+                context.startActivity(i);
+            }
+        });
 
     }
 

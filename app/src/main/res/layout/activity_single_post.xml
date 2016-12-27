@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_single_post"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="vishal.alumini_final.SinglePost">
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            app:srcCompat="@drawable/guest"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/post_image"
+            android:layout_margin="8dp"/>
+
+        <TextView
+            android:text="Title of post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_title"
+            android:layout_below="@+id/post_image"
+            android:layout_margin="12dp"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:text="Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_user"
+            android:layout_below="@+id/sp_title"
+            android:layout_margin="10dp"
+            android:textStyle="italic"/>
+        <TextView
+        android:text="Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_date"
+            android:textStyle="italic"
+            android:layout_toEndOf="@+id/sp_user"
+            android:layout_toRightOf="@+id/sp_user"
+            android:paddingRight="8dp"
+        android:layout_below="@+id/sp_title"
+        android:layout_margin="10dp"/>
+        <TextView
+            android:text="Designation of post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_designation"
+            android:layout_below="@+id/sp_user"
+            android:layout_margin="8dp"/>
+        <TextView
+            android:text="Description of post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_desc"
+            android:layout_below="@+id/sp_designation"
+            android:layout_margin="8dp"/>
+
+        <TextView
+            android:text="Reference of post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_reference"
+            android:layout_below="@+id/sp_desc"
+            android:layout_margin="8dp"/>
+        <TextView
+            android:text="Platform of post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_platform"
+            android:layout_below="@+id/sp_reference"
+            android:layout_margin="8dp"/>
+        <TextView
+            android:text="Branch of post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sp_branch"
+            android:layout_below="@+id/sp_platform"
+            android:layout_margin="8dp"/>
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
+
+</RelativeLayout>

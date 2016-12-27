@@ -32,8 +32,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.nononsenseapps.filepicker.FilePickerActivity;
+    import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
+    import org.json.JSONException;
 import org.json.JSONObject;
 
     import java.io.ByteArrayOutputStream;
@@ -64,8 +65,6 @@ import java.util.Map;
         private Spinner spinner;
         private Button choose;
         private TextView loginLink;
-        private TextView fname;
-        private TextView lname;
         private TextView email;
         private Button register;
         private String FileName;
@@ -74,9 +73,9 @@ import java.util.Map;
         private String newPath;
         private String fileName;
         private boolean btn_status = false;
-
+        private TextView fname, lname, Semail;
         private byte [] bytes;
-
+        private String profile_path = "http://www.jarvismedia.tech/final-ckp/files/profile/";
         private static final int RESULT_LOAD_IMAGE = 1;
 
         @Override
@@ -88,8 +87,12 @@ import java.util.Map;
             updateProfile = (Button)findViewById(R.id.updateProfile);
             updatePassword = (EditText)findViewById(R.id.updatePassword);
 
+            fname = (TextView)findViewById(R.id.prof_fname);
+            lname = (TextView)findViewById(R.id.prof_lname);
+            Semail = (TextView)findViewById(R.id.prof_id);
+
             final SharedPreferences sp = this.getSharedPreferences("user_credential", Context.MODE_PRIVATE);
-            String email = sp.getString("email", "No-Email");
+            final String email = sp.getString("email", "No-Email");
 
             Log.d("email", email);
             if(status){
@@ -101,6 +104,23 @@ import java.util.Map;
             @Override
             public void onResponse(String response) {
                 Log.d("response", response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String Sfname = jsonObject.getString("fname");
+                    String Slname = jsonObject.getString("lname");
+                    String SFileName = jsonObject.getString("Profile");
+
+                    profile_path = profile_path+SFileName;
+                    Uri uri = Uri.parse(profile_path);
+                    Log.d("filepath", uri.toString());
+                    Picasso.with(Profile_settings.this).load(uri).into(imageView);
+                    fname.setText(Sfname);
+                    lname.setText(Slname);
+                    Semail.setText(email);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
@@ -173,8 +193,14 @@ import java.util.Map;
                                         public void onResponse(JSONObject response) {
                                             Log.d("response", response.toString());
                                             Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-                                    //        if(response.get("Status").equals(""));
-
+                                            try {
+                                                if(response.get("Status").equals("Success")){
+//                                                    finish();
+                                                    startActivity(new Intent(getApplicationContext(), Profile_settings.class));
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
                                         }
                                     }, new Response.ErrorListener() {
 

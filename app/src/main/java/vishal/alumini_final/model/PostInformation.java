@@ -14,6 +14,15 @@ public class PostInformation {
     String UserName;
     String Tech;
     String Branch;
+    String postid;
+
+    public String getPostid() {
+        return postid;
+    }
+
+    public void setPostid(String postid) {
+        this.postid = postid;
+    }
 
     public String getBranch() {
         return Branch;

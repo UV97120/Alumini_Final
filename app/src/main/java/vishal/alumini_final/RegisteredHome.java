@@ -113,6 +113,7 @@ public class RegisteredHome extends AppCompatActivity
                         postInformation.setTimeStamp(jsonObject1.getString("created_at"));
                         //postInformation.setUserName(jsonObject1.getString("userid"));
                         postInformation.setImage(imageuri+jsonObject1.getString("filename"));
+                        postInformation.setPostid(jsonObject1.getString("postid"));
 
                         JSONObject jsonObject2 = new JSONObject();
                        // jsonObject2.put("userid", jsonObject1.getString("userid"));
