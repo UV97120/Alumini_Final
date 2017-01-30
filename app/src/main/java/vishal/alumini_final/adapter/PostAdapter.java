@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -34,7 +33,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     Context context;
     private GestureDetectorCompat mDetector;
 
-    private String url ="http://jarvismedia.tech/final-ckp/android/singlepost/";
+ //   private String url ="http://jarvismedia.tech/final-ckp/android/singlepost/";
     private String postid = null;
 
 

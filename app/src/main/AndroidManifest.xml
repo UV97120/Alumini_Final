@@ -71,6 +71,10 @@
             android:name=".Profile_settings"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".SinglePost"></activity>
+
+        <activity
+            android:name=".Search_Activity"></activity>
+
     </application>
 
 </manifest>

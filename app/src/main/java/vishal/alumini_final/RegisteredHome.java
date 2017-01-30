@@ -51,8 +51,9 @@ public class RegisteredHome extends AppCompatActivity
     private ArrayList<PostInformation> postResults = new ArrayList<PostInformation>();
     private ArrayList<PostInformation> filteredResults = new ArrayList<PostInformation>();
     private String imageuri= "http://jarvismedia.tech/final-ckp/files/image/";
-
+    private String search_string;
     private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +77,6 @@ public class RegisteredHome extends AppCompatActivity
         rightnavigationView.setNavigationItemSelectedListener(this);
 
 
-//        searchView = (SearchView) findViewById(R.id.action_search_reg);
-
-        //searchResults = (ListView)findViewById(R.id.listview_search);
-
-    //PostAdapter postAdapter = new PostAdapter();
         recyclerView = (RecyclerView)findViewById(R.id.postRecyclerView2);
 
         Log.d("recyclerview", recyclerView+"");
@@ -137,9 +133,7 @@ public class RegisteredHome extends AppCompatActivity
 //                        nameQueue.add(jsonObjectRequest1);
 
                         postResults.add(postInformation);
-
                         recyclerView.setAdapter(new PostAdapter(getApplicationContext(), postResults));
-
                     }
 
                 } catch (JSONException e) {
@@ -153,7 +147,7 @@ public class RegisteredHome extends AppCompatActivity
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                Log.d("bhosdike_lode", error.toString());
+                Log.d("bhosdike_lode_1", error.toString());
             }
         });
 
@@ -169,7 +163,7 @@ public class RegisteredHome extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.registerd_home, menu);
       /*------------------------------SEARCH VIEW-------------------------------*/
-        SearchView search=(SearchView) menu.findItem(R.id.action_search_reg).getActionView();
+        final SearchView search=(SearchView) menu.findItem(R.id.action_search_reg).getActionView();
         search.setQueryHint("Search Branch");
 
         //   *** setOnQueryTextFocusChangeListener ***
@@ -289,6 +283,7 @@ public class RegisteredHome extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 
